@@ -45,8 +45,9 @@ def update_event(event_id):
 @app.route("/events/<int:event_id>", methods=["DELETE"])
 def delete_event(event_id):
     global events
+    event = next((e for e in events if e.id == event_id), None)
     events = [e for e in events if e.id != event_id]
-    if not events:
+    if not event:
         return("Event not found", 404)
     return("Deleted event", 204)
     pass
