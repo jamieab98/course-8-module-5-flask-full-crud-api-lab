@@ -34,6 +34,8 @@ def create_event():
 def update_event(event_id):
     data = request.get_json()
     event = next((e for e in events if e.id == event_id), None)
+    if not event:
+        return("Event not found", 404)
     event.title = data["title"]
     return jsonify(event.to_dict()), 200
     pass
@@ -44,6 +46,8 @@ def update_event(event_id):
 def delete_event(event_id):
     global events
     events = [e for e in events if e.id != event_id]
+    if not events:
+        return("Event not found", 404)
     pass
 
 if __name__ == "__main__":
