@@ -48,6 +48,7 @@ def delete_event(event_id):
     events = [e for e in events if e.id != event_id]
     if not events:
         return("Event not found", 404)
+    return("Deleted event", 204)
     pass
 
 if __name__ == "__main__":
